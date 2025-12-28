@@ -1,4 +1,4 @@
-import { api } from "../serverConnections/api";
+import { api } from "../client/api";
 
 export interface Post {
   id: number;
