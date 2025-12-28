@@ -7,7 +7,7 @@ import {
   type CreatePostData,
 } from "@/api/requests/posts";
 
-// GET: Tüm postları getir
+// GET: Fetch all posts
 export const usePosts = () => {
   return useQuery<Post[]>({
     queryKey: ["posts"],
@@ -15,7 +15,7 @@ export const usePosts = () => {
   });
 };
 
-// GET: Belirli bir postu getir
+// GET: Fetch a specific post
 export const usePost = (postId: number) => {
   return useQuery<Post>({
     queryKey: ["post", postId],
@@ -24,14 +24,14 @@ export const usePost = (postId: number) => {
   });
 };
 
-// POST: Yeni post oluştur
+// POST: Create a new post
 export const useCreatePost = () => {
   const queryClient = useQueryClient();
 
   return useMutation<Post, Error, CreatePostData>({
     mutationFn: createPost,
     onSuccess: () => {
-      // Post listesini yenile
+      // Refresh post list
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });

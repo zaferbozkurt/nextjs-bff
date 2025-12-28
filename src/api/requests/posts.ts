@@ -13,19 +13,19 @@ export interface CreatePostData {
   userId: number;
 }
 
-// GET: Tüm postları getir
+// GET: Fetch all posts
 export const fetchAllPosts = async (): Promise<Post[]> => {
   const { data } = await api.get("/posts");
-  return data.posts || data; // DummyJSON posts array'i içinde döner
+  return data.posts || data; // DummyJSON returns posts in an array
 };
 
-// GET: Belirli bir postun detaylarını getir
+// GET: Fetch a specific post
 export const fetchPostById = async (postId: number): Promise<Post> => {
   const { data } = await api.get(`/posts/${postId}`);
   return data;
 };
 
-// POST: Yeni post oluştur
+// POST: Create a new post
 export const createPost = async (
   postData: CreatePostData
 ): Promise<Post> => {
